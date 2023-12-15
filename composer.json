@@ -1,6 +1,6 @@
 {
     "name": "dev4traders/d4t-admin-ui-dcat-adminlte",
-    "alias": "BS5",
+    "alias": "dcat-adminlte",
     "description": "d4t ui dcat-adminlte",
     "type": "library",
     "keywords": ["d4t", "ui", "dcat-adminlte"],
