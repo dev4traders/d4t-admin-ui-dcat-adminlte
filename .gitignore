@@ -1,0 +1,4 @@
+/node_modules
+package-lock.log
+/.idea
+/.vscode

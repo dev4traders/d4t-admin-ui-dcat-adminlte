@@ -1,0 +1,1 @@
+# d4t-admin-ui-dcat-adminlte
