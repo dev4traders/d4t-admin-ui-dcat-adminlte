@@ -2,9 +2,15 @@
 
 namespace D4T\Admin\UI\DcatAdminlte;
 
+use D4T\Admin\UI\DcatAdminlte\Enums\NavBarClass;
 use Dcat\Admin\Admin;
-use D4T\Admin\UI\DcatAdminlte\Setting;
+use Dcat\Admin\Enums\LayoutType;
 use Dcat\Admin\Enums\ExtensionType;
+use Dcat\Admin\Enums\AuthLayoutType;
+use D4T\Admin\UI\DcatAdminlte\Setting;
+use D4T\Admin\UI\DcatAdminlte\Enums\NavBarType;
+use D4T\Admin\UI\DcatAdminlte\Enums\NavBarColor;
+use D4T\Admin\UI\DcatAdminlte\Enums\SideBarStyle;
 use Dcat\Admin\Extend\ServiceProvider as ServiceProviderBase;
 
 class ServiceProvider extends ServiceProviderBase
@@ -12,6 +18,73 @@ class ServiceProvider extends ServiceProviderBase
     public function getExtensionType(): ExtensionType
     {
         return ExtensionType::UI;
+    }
+
+    public static function sidebarCollapsed() : bool {
+        return self::setting('sidebar_collapsed') ?? true;
+    }
+
+    public static function layoutType(): LayoutType
+    {
+        return LayoutType::tryFrom(self::setting(LayoutType::class)) ?? LayoutType::VERTICAL;
+    }
+
+    public static function authLayoutType(): AuthLayoutType
+    {
+        return AuthLayoutType::tryFrom(self::setting(AuthLayoutType::class)) ?? AuthLayoutType::BASIC;
+    }
+
+    public static function sidebarStyle(): SideBarStyle
+    {
+        return SideBarStyle::tryFrom(self::setting(SideBarStyle::class)) ?? SideBarStyle::PRIMARY;
+    }
+
+    // public static function sidebarColor(): NavBarColor
+    // {
+    //     return NavBarColor::tryFrom(self::setting(NavBarColor::class)) ?? NavBarColor::PRIMARY;
+    // }
+
+    public static function navbarColor(): NavBarColor
+    {
+        return NavBarColor::tryFrom(self::setting(NavBarColor::class)) ?? NavBarColor::PRIMARY;
+    }
+
+    public static function navbarType(): NavBarType
+    {
+        return NavBarType::tryFrom(self::setting(NavBarType::class)) ?? NavBarType::FIXED_TOP;
+    }
+
+    public static function sidebarClass(): string
+    {
+        return self::sidebarCollapsed() ? 'sidebar-collapse' : '';
+    }
+
+    public static function navbarClass(): string
+    {
+        return self::navbarType()().' '.self::navbarColor()();
+    }
+
+    public static function bodyClass(): string
+    {
+        $class = [];
+
+        //todo:: layout-fixed add to settings
+
+        if(self::navbarClass() == NavBarType::FIXED_TOP)
+            $class[] = 'navbar-fixed-top';
+
+        if(self::sidebarCollapsed())
+            $class[] = 'sidebar-collapse';
+
+        if(self::layoutType() == LayoutType::HORIZONTAL)
+            $class[] = 'horizontal-menu';
+
+        return implode(' ', $class);
+    }
+
+    public static function theme(): string
+    {
+        return self::setting('theme') ?? 'default';
     }
 
     protected $js = [
@@ -197,3 +270,4 @@ class ServiceProvider extends ServiceProviderBase
         return new Setting($this);
     }
 }
+
