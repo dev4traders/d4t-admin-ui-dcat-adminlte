@@ -2,7 +2,6 @@
 
 namespace D4T\Admin\UI\DcatAdminlte;
 
-use D4T\Admin\UI\DcatAdminlte\Enums\NavBarClass;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Enums\LayoutType;
 use Dcat\Admin\Enums\ExtensionType;
@@ -11,6 +10,7 @@ use D4T\Admin\UI\DcatAdminlte\Setting;
 use D4T\Admin\UI\DcatAdminlte\Enums\NavBarType;
 use D4T\Admin\UI\DcatAdminlte\Enums\NavBarColor;
 use D4T\Admin\UI\DcatAdminlte\Enums\SideBarStyle;
+use Dcat\Admin\Enums\DarkModeType;
 use Dcat\Admin\Extend\ServiceProvider as ServiceProviderBase;
 
 class ServiceProvider extends ServiceProviderBase
@@ -22,6 +22,11 @@ class ServiceProvider extends ServiceProviderBase
 
     public static function sidebarCollapsed() : bool {
         return self::setting('sidebar_collapsed') ?? true;
+    }
+
+    public static function darkMode(): DarkModeType
+    {
+        return DarkModeType::tryFrom(self::setting(DarkModeType::class)) ?? DarkModeType::LIGHT;
     }
 
     public static function layoutType(): LayoutType
@@ -62,6 +67,7 @@ class ServiceProvider extends ServiceProviderBase
     public static function navbarClass(): string
     {
         return self::navbarType()().' '.self::navbarColor()();
+
     }
 
     public static function bodyClass(): string
@@ -69,8 +75,10 @@ class ServiceProvider extends ServiceProviderBase
         $class = [];
 
         //todo:: layout-fixed add to settings
+        if(self::darkMode() == DarkModeType::DARK)
+            $class[] = 'dark-mode';
 
-        if(self::navbarClass() == NavBarType::FIXED_TOP)
+        if(self::navbarType() == NavBarType::FIXED_TOP)
             $class[] = 'navbar-fixed-top';
 
         if(self::sidebarCollapsed())
@@ -255,14 +263,15 @@ class ServiceProvider extends ServiceProviderBase
 
     public function init()
     {
-        parent::init();
 
+        parent::init();
         //todo::move to Grid
+
         Admin::css('@datatables');
 
-        Admin::requireAssets('@dev4traders.d4t-admin-ui-dcat-adminlte');
+        //Admin::requireAssets('@dev4traders.d4t-admin-ui-dcat-adminlte');
 
-        $this->publishable();
+        //$this->publishable();
     }
 
     public function settingForm()

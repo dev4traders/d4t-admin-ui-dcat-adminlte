@@ -9,6 +9,7 @@ use D4T\Admin\UI\DcatAdminlte\Enums\NavBarClass;
 use D4T\Admin\UI\DcatAdminlte\Enums\NavBarColor;
 use D4T\Admin\UI\DcatAdminlte\Enums\NavBarType;
 use D4T\Admin\UI\DcatAdminlte\Enums\SideBarStyle;
+use Dcat\Admin\Enums\DarkModeType;
 
 class Setting extends Form
 {
@@ -24,7 +25,7 @@ class Setting extends Form
         $this->radio(SideBarStyle::class, $this->trans('ui-sneat.sidebar_style'))->options(SideBarStyle::map())->default(SideBarStyle::PRIMARY->value);
         $this->radio(NavBarColor::class, $this->trans('ui-sneat.navbar_color'))->options(NavBarColor::map())->default(NavBarColor::PRIMARY->value);
         $this->radio(NavBarType::class, $this->trans('ui-sneat.navbar_type'))->options(NavBarType::map())->default(NavBarType::FIXED_TOP->value);
-
+        $this->radio(DarkModeType::class, $this->trans('ui-sneat.dark_mode_type'))->options(DarkModeType::map())->default(DarkModeType::LIGHT->value);
 
         $this->text('theme')->default('default');
         $this->switch('sidebar_collapsed')->default(true);

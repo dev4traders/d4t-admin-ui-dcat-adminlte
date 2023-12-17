@@ -8,7 +8,7 @@ use D4T\Core\Traits\D4TEnumTrait;
 enum NavBarColor : string implements D4TEnum {
     use D4TEnumTrait;
 
-    case PRIMARY = 'primary';
-    case DARK = 'dark';
-    case LIGHT = 'light';
+    case PRIMARY = 'bg-primary';
+    case DARK = 'bg-dark';
+    case LIGHT = 'bg-light';
 }
