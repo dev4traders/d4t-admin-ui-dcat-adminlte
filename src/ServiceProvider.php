@@ -75,6 +75,7 @@ class ServiceProvider extends ServiceProviderBase
         $class = [];
 
         //todo:: layout-fixed add to settings
+        //dd(self::darkMode());
         if(self::darkMode() == DarkModeType::DARK)
             $class[] = 'dark-mode';
 
@@ -264,6 +265,7 @@ class ServiceProvider extends ServiceProviderBase
     public function init()
     {
 
+        //dd(Admin::app());
         parent::init();
         //todo::move to Grid
 
