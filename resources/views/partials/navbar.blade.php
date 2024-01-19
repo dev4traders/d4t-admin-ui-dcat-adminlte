@@ -1,7 +1,7 @@
 
 {!! admin_section(Dcat\Admin\Admin::SECTION['NAVBAR_BEFORE']) !!}
 
-<nav class="header-navbar navbar-expand-lg navbar navbar-with-menu {{ D4T\Admin\UI\DcatAdminlte\ServiceProvider::navbarClass() }} navbar-light navbar-shadow " style="top: 0;">
+<nav class="header-navbar navbar-expand navbar navbar-with-menu {{ D4T\Admin\UI\DcatAdminlte\ServiceProvider::navbarClass() }} navbar-light navbar-shadow " style="top: 0;">
 
     <div class="navbar-wrapper">
         <div class="navbar-container content">
