@@ -26,8 +26,9 @@
     }
     .steps-square {
         display: none;
-        width: 2000px;
-        height: 2000px;
+        width: 100%;
+        height: auto;
+        padding-top: 100%;
         position: absolute;
         top: 50%;
         right: 0;
@@ -40,12 +41,20 @@
         display: block;
         background: rgb(232,60,244);
         background: linear-gradient(79deg, rgba(232,60,244,1) 0.92%, rgba(90,198,218,1) 97.8%);
-        width: 500px;
-        height: 200px;
+        width: 130%;
+        height: 45%;
         position: absolute;
-        top: 100px;
-        right: -100px;
+        top: -30%;
+        right: 0;
         transform: rotate(-45deg);
+        transform-origin: top right;
+    }
+    @media screen and (max-width: 1199px) {
+        .steps-square__inner {
+            width: 140%;
+            height: 50%;
+            top: -50%;
+        }
     }
     .steps-badge {
         display: inline-flex;
