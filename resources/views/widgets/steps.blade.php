@@ -13,7 +13,7 @@
     @foreach($items as $idx => $item)
         <div
             id="step_{{ $item['id'] }}"
-            class="bg-dark list-group-item list-group-item-action d-flex justify-content-between steps-item {{ $idx == $active_idx ? 'steps-item_active' : '' }}"
+            class="bg-dark border-secondary list-group-item list-group-item-action d-flex justify-content-between steps-item {{ $idx == $active_idx ? 'steps-item_active' : '' }}"
         >
             <div class="li-wrapper d-flex justify-content-start align-items-center">
                 @if($item['icon'])
