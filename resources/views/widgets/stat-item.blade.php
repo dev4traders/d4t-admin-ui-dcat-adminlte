@@ -3,7 +3,7 @@
         @endif
         <div class="d-flex px-2 py-2">
             <div class="d-inline-flex flex-shrink-0 mr-1">
-                <span class="badge badge-primary d-inline-flex align-items-center">
+                <span class="badge badge-{{ $icon_class }} d-inline-flex align-items-center">
                     {!! $icon !!}
                 </span>
             </div>
