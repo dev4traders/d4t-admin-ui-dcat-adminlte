@@ -35,6 +35,16 @@
     transform-origin: center right;
     transform: rotate(-45deg);
 }
+body.dark-mode .steps__bg-container .steps__bg-wrapper .progress:not(.bg-danger)
+{
+    background-color: #223!important;
+}
+.steps__bg-container .steps__bg-wrapper .progress.bg-danger {
+    opacity: 0.6;
+}
+.steps__bg-container .steps__bg-wrapper .progress-bar {
+    opacity: 0.6;
+}
 </style>
 <div class="d-flex flex-lg-row flex-column align-items-stretch w-100">
     @foreach($items as $idx => $item)
@@ -51,7 +61,7 @@
                 <div class="steps__bg-wrapper">
                     <div class="progress {{ $item['disabled'] ? 'bg-'.$disabled_class : 'bg-'.$bg_class }}" style="height: 100%;">
                         <div
-                            class="progress-bar bg-label-{{ $active_class }}"
+                            class="progress-bar bg-{{ $active_class }}"
                             role="progressbar"
                             style="width: {{ $item['percent'] }}%;"
                             aria-valuenow="{{ $item['percent'] }}"
