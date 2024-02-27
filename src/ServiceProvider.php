@@ -21,12 +21,12 @@ class ServiceProvider extends ServiceProviderBase
     }
 
     public static function sidebarCollapsed() : bool {
-        return self::setting('sidebar_collapsed') ?? true;
+        return self::setting('sidebar_collapsed') ?? false;
     }
 
     public static function darkMode(): DarkModeType
     {
-        return DarkModeType::tryFrom(self::setting(DarkModeType::class)) ?? DarkModeType::LIGHT;
+        return DarkModeType::tryFrom(self::setting(DarkModeType::class)) ?? DarkModeType::DARK;
     }
 
     public static function layoutType(): LayoutType
@@ -41,7 +41,7 @@ class ServiceProvider extends ServiceProviderBase
 
     public static function sidebarStyle(): SideBarStyle
     {
-        return SideBarStyle::tryFrom(self::setting(SideBarStyle::class)) ?? SideBarStyle::PRIMARY;
+        return SideBarStyle::tryFrom(self::setting(SideBarStyle::class)) ?? SideBarStyle::PRIMARY_DARK;
     }
 
     // public static function sidebarColor(): NavBarColor
@@ -51,7 +51,7 @@ class ServiceProvider extends ServiceProviderBase
 
     public static function navbarColor(): NavBarColor
     {
-        return NavBarColor::tryFrom(self::setting(NavBarColor::class)) ?? NavBarColor::PRIMARY;
+        return NavBarColor::tryFrom(self::setting(NavBarColor::class)) ?? NavBarColor::DARK;
     }
 
     public static function navbarType(): NavBarType
